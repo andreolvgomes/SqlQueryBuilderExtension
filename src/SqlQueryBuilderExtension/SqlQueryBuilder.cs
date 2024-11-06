@@ -33,11 +33,26 @@ namespace SqlQueryBuilderExtension
 
         public static SqlQueryResult BuildQuery<T>(this Expression<Func<T, bool>> expression, Expression<Func<T, object>> selector = null)
         {
+            if (expression == null)
+            {
+                var empty = SqlQueryResult.Empty;
+                empty.TreatSql<T>(empty, selector);
+                return empty;
+            }
+
             var i = 1;
 
             var result = Expression<T>(ref i, expression.Body, isUnary: true);
             result.TreatSql<T>(result, selector);
             return result;
+
+        }
+
+        public static string BuildFields<T>(this Expression<Func<T, object>> selector)
+        {
+            var result = SqlQueryResult.Empty;
+            result.TreatSql<T>(result, selector);
+            return result.Fields;
         }
 
         private static SqlQueryResult Expression<T>(ref int i, Expression expression, bool isUnary = false, string prefix = null, string postfix = null, bool left = true)
