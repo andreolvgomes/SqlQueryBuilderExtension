@@ -36,7 +36,7 @@ namespace SqlQueryBuilderExtension
 
         public static SqlQueryResult IsParameter(int count, object value)
         {
-            return new SqlQueryResult($"@param{count}", new SqlQueryParameter($"param{count.ToString()}", value));
+            return new SqlQueryResult($"@param{count}", new SqlQueryParameter($"@param{count.ToString()}", value));
         }
 
         public static SqlQueryResult IsCollection(ref int countStart, IEnumerable values)
@@ -45,7 +45,7 @@ namespace SqlQueryBuilderExtension
             var sql = new StringBuilder("(");
             foreach (var value in values)
             {
-                parameters.Add(new SqlQueryParameter($"param{countStart.ToString()}", value));
+                parameters.Add(new SqlQueryParameter($"@param{countStart.ToString()}", value));
                 sql.Append($"@param{countStart},");
                 countStart++;
             }
