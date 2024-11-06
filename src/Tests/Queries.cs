@@ -6,9 +6,9 @@ namespace Tests
 {
     public class Queries
     {
-        public static QueryPart Query<TEntity>(Expression<Func<TEntity, bool>> expression)
+        public static SqlQueryResult Query<TEntity>(Expression<Func<TEntity, bool>> expression)
         {
-            var result = expression.ToSql();
+            var result = expression.BuildQuery();
             return result;
         }
     }

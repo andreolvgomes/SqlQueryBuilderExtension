@@ -2,9 +2,9 @@
 
 namespace SqlQueryBuilderExtension
 {
-    public class Parameter
+    public class SqlQueryParameter
     {
-        public Parameter(string key, object value, DbType? type = null)
+        public SqlQueryParameter(string key, object value, DbType? type = null)
         {
             Key = key;
             Value = value;

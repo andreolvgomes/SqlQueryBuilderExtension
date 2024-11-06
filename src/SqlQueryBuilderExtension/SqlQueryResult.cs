@@ -7,44 +7,45 @@ using System.Linq.Expressions;
 
 namespace SqlQueryBuilderExtension
 {
-    public class QueryPart
+    public class SqlQueryResult
     {
         public string Where { get; set; }
         public string Fields { get; set; }
         public string Sql { get; set; }
 
         public bool HasSql => !string.IsNullOrEmpty(Where);
+        public static SqlQueryResult Empty => new SqlQueryResult(string.Empty);
 
-        public IReadOnlyList<Parameter> Parameters { get; }
+        public IReadOnlyList<SqlQueryParameter> Parameters { get; }
 
-        private QueryPart(string sql, params Parameter[] parameters)
+        private SqlQueryResult(string sql, params SqlQueryParameter[] parameters)
             : this(sql, parameters.ToList())
         {
         }
 
-        private QueryPart(string sql, IEnumerable<Parameter> parameters)
+        private SqlQueryResult(string sql, IEnumerable<SqlQueryParameter> parameters)
         {
             Where = sql;
-            Parameters = new List<Parameter>(parameters);
+            Parameters = new List<SqlQueryParameter>(parameters);
         }
 
-        public static QueryPart IsSql(string sql)
+        public static SqlQueryResult IsSql(string sql)
         {
-            return new QueryPart(sql);
+            return new SqlQueryResult(sql);
         }
 
-        public static QueryPart IsParameter(int count, object value)
+        public static SqlQueryResult IsParameter(int count, object value)
         {
-            return new QueryPart($"@param{count}", new Parameter($"param{count.ToString()}", value));
+            return new SqlQueryResult($"@param{count}", new SqlQueryParameter($"param{count.ToString()}", value));
         }
 
-        public static QueryPart IsCollection(ref int countStart, IEnumerable values)
+        public static SqlQueryResult IsCollection(ref int countStart, IEnumerable values)
         {
-            var parameters = new List<Parameter>();
+            var parameters = new List<SqlQueryParameter>();
             var sql = new StringBuilder("(");
             foreach (var value in values)
             {
-                parameters.Add(new Parameter($"param{countStart.ToString()}", value));
+                parameters.Add(new SqlQueryParameter($"param{countStart.ToString()}", value));
                 sql.Append($"@param{countStart},");
                 countStart++;
             }
@@ -55,27 +56,25 @@ namespace SqlQueryBuilderExtension
             }
 
             sql[sql.Length - 1] = ')';
-            return new QueryPart(sql.ToString(), parameters);
+            return new SqlQueryResult(sql.ToString(), parameters);
         }
 
-        public static QueryPart Concat(string @operator, QueryPart operand)
+        public static SqlQueryResult Append(string @operator, SqlQueryResult operand)
         {
-            return new QueryPart($"({@operator} {operand.Where})", operand.Parameters);
+            return new SqlQueryResult($"({@operator} {operand.Where})", operand.Parameters);
         }
 
-        public static QueryPart Concat(QueryPart left, string @operator, QueryPart right)
+        public static SqlQueryResult Append(SqlQueryResult left, string @operator, SqlQueryResult right)
         {
             if (right.Where.Equals("NULL", StringComparison.InvariantCultureIgnoreCase))
             {
                 @operator = @operator == "=" ? "IS" : "IS NOT";
             }
 
-            return new QueryPart($"({left.Where} {@operator} {right.Where})", left.Parameters.Union(right.Parameters));
-        }
+            return new SqlQueryResult($"({left.Where} {@operator} {right.Where})", left.Parameters.Union(right.Parameters));
+        }        
 
-        public static QueryPart Empty => new QueryPart(string.Empty);
-
-        public void ProcessSql<T>(QueryPart wherePart, Expression<Func<T, object>> selector)
+        public void TreatSql<T>(SqlQueryResult wherePart, Expression<Func<T, object>> selector)
         {
             if (selector != null)
             {
