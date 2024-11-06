@@ -126,6 +126,18 @@ namespace Tests.Tests
             result.Assert("select * from dbo.[Produtos] where (not ([Pro_pvenda] <> @param1))");
         }
 
+        public void ExtrairUmCampoSelect()
+        {
+            var result = Queries.Query<Produtos>(pro => !(pro.Pro_pvenda != 0), s => s.Pro_descricao);
+            result.Assert("select [Pro_descricao] from dbo.[Produtos] where (not ([Pro_pvenda] <> @param1))");
+        }
+
+        public void ExtrairVariosCampoSelect()
+        {
+            var result = Queries.Query<Produtos>(pro => !(pro.Pro_pvenda != 0), s => new { s.Pro_codigo, s.Pro_descricao, s.Pro_pvenda });
+            result.Assert("select [Pro_codigo], [Pro_descricao], [Pro_pvenda] from dbo.[Produtos] where (not ([Pro_pvenda] <> @param1))");
+        }
+
         public void ValorVindoDePropriedade()
         {
             var produtos = new Produtos() { Pro_codigo = "123" };

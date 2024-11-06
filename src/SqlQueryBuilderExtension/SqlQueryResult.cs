@@ -10,7 +10,7 @@ namespace SqlQueryBuilderExtension
     public class SqlQueryResult
     {
         public string Where { get; set; }
-        public string Fields { get; set; }
+        public string Fields { get; set; } = "*";
         public string Sql { get; set; }
 
         public bool HasSql => !string.IsNullOrEmpty(Where);
@@ -72,7 +72,7 @@ namespace SqlQueryBuilderExtension
             }
 
             return new SqlQueryResult($"({left.Where} {@operator} {right.Where})", left.Parameters.Union(right.Parameters));
-        }        
+        }
 
         public void TreatSql<T>(SqlQueryResult wherePart, Expression<Func<T, object>> selector)
         {
@@ -92,10 +92,7 @@ namespace SqlQueryBuilderExtension
         public string SelectImpl<T>(Expression<Func<T, object>> selector)
         {
             var sb = new StringBuilder();
-            var body = (selector.Body as System.Linq.Expressions.NewExpression);
-            if (body == null) return "";
-
-            var fields = GetFields(selector);
+            var fields = GetPropertyNames(selector);
 
             int i = 0;
             foreach (var name in fields)
@@ -108,14 +105,37 @@ namespace SqlQueryBuilderExtension
             return sb.ToString();
         }
 
-        private static List<string> GetFields<T>(Expression<Func<T, object>> selector)
+        public static List<string> GetPropertyNames<T>(Expression<Func<T, object>> expression)
         {
-            var sb = new StringBuilder();
-            var body = (selector.Body as System.Linq.Expressions.NewExpression);
-            if (body == null) return new List<string>();
+            var propertyNames = new List<string>();
 
-            var fields = body.Members.Select(x => x.Name).ToList();
-            return fields;
+            if (expression.Body is MemberExpression memberExpression)
+            {
+                // Caso de uma única propriedade, como s => s.Pro_descricao
+                propertyNames.Add(memberExpression.Member.Name);
+            }
+            else if (expression.Body is UnaryExpression unaryExpression && unaryExpression.Operand is MemberExpression unaryMember)
+            {
+                // Caso de conversão para object, como em s => (object)s.Pro_descricao
+                propertyNames.Add(unaryMember.Member.Name);
+            }
+            else if (expression.Body is NewExpression newExpression)
+            {
+                // Caso de múltiplas propriedades, como s => new { s.Pro_codigo, s.Pro_descricao, s.Pro_pvenda }
+                foreach (var argument in newExpression.Arguments)
+                {
+                    if (argument is MemberExpression newMemberExpression)
+                    {
+                        propertyNames.Add(newMemberExpression.Member.Name);
+                    }
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Expressão não é uma propriedade válida ou uma seleção de múltiplas propriedades.");
+            }
+
+            return propertyNames;
         }
     }
 }
