@@ -1,0 +1,10 @@
+C:\Users\André\Downloads\ExpressionExtensionSQL-master\ExpressionExtensionSQL-master\ExpressionExtensionSQL\bin\Debug\netstandard2.0\ExpressionExtensionSQL.deps.json
+C:\Users\André\Downloads\ExpressionExtensionSQL-master\ExpressionExtensionSQL-master\ExpressionExtensionSQL\bin\Debug\netstandard2.0\ExpressionExtensionSQL.dll
+C:\Users\André\Downloads\ExpressionExtensionSQL-master\ExpressionExtensionSQL-master\ExpressionExtensionSQL\bin\Debug\netstandard2.0\ExpressionExtensionSQL.pdb
+C:\Users\André\Downloads\ExpressionExtensionSQL-master\ExpressionExtensionSQL-master\ExpressionExtensionSQL\obj\Debug\netstandard2.0\ExpressionExtensionSQL.csproj.AssemblyReference.cache
+C:\Users\André\Downloads\ExpressionExtensionSQL-master\ExpressionExtensionSQL-master\ExpressionExtensionSQL\obj\Debug\netstandard2.0\ExpressionExtensionSQL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\André\Downloads\ExpressionExtensionSQL-master\ExpressionExtensionSQL-master\ExpressionExtensionSQL\obj\Debug\netstandard2.0\ExpressionExtensionSQL.AssemblyInfoInputs.cache
+C:\Users\André\Downloads\ExpressionExtensionSQL-master\ExpressionExtensionSQL-master\ExpressionExtensionSQL\obj\Debug\netstandard2.0\ExpressionExtensionSQL.AssemblyInfo.cs
+C:\Users\André\Downloads\ExpressionExtensionSQL-master\ExpressionExtensionSQL-master\ExpressionExtensionSQL\obj\Debug\netstandard2.0\ExpressionExtensionSQL.csproj.CoreCompileInputs.cache
+C:\Users\André\Downloads\ExpressionExtensionSQL-master\ExpressionExtensionSQL-master\ExpressionExtensionSQL\obj\Debug\netstandard2.0\ExpressionExtensionSQL.dll
+C:\Users\André\Downloads\ExpressionExtensionSQL-master\ExpressionExtensionSQL-master\ExpressionExtensionSQL\obj\Debug\netstandard2.0\ExpressionExtensionSQL.pdb

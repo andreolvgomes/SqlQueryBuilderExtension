@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "MyTests/1.0.0": {
+        "dependencies": {
+          "SqlQueryBuilderExtension": "1.2.7"
+        },
+        "runtime": {
+          "MyTests.dll": {}
+        }
+      },
+      "SqlQueryBuilderExtension/1.2.7": {
+        "runtime": {
+          "SqlQueryBuilderExtension.dll": {
+            "assemblyVersion": "1.2.7",
+            "fileVersion": "1.0.2.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MyTests/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SqlQueryBuilderExtension/1.2.7": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
