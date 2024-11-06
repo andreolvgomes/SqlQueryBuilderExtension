@@ -1,0 +1,10 @@
+C:\Projects\SqlQueryBuilderExtension\src\Tests\bin\Debug\Tests.exe.config
+C:\Projects\SqlQueryBuilderExtension\src\Tests\bin\Debug\Tests.exe
+C:\Projects\SqlQueryBuilderExtension\src\Tests\bin\Debug\Tests.pdb
+C:\Projects\SqlQueryBuilderExtension\src\Tests\bin\Debug\SqlQueryBuilderExtension.dll
+C:\Projects\SqlQueryBuilderExtension\src\Tests\bin\Debug\SqlQueryBuilderExtension.pdb
+C:\Projects\SqlQueryBuilderExtension\src\Tests\obj\Debug\Tests.csproj.AssemblyReference.cache
+C:\Projects\SqlQueryBuilderExtension\src\Tests\obj\Debug\Tests.csproj.CoreCompileInputs.cache
+C:\Projects\SqlQueryBuilderExtension\src\Tests\obj\Debug\Tests.csproj.Up2Date
+C:\Projects\SqlQueryBuilderExtension\src\Tests\obj\Debug\Tests.exe
+C:\Projects\SqlQueryBuilderExtension\src\Tests\obj\Debug\Tests.pdb

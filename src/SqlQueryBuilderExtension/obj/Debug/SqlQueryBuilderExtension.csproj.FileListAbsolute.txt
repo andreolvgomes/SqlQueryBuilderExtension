@@ -1,0 +1,6 @@
+C:\Projects\SqlQueryBuilderExtension\src\SqlQueryBuilderExtension\bin\Debug\SqlQueryBuilderExtension.dll
+C:\Projects\SqlQueryBuilderExtension\src\SqlQueryBuilderExtension\bin\Debug\SqlQueryBuilderExtension.pdb
+C:\Projects\SqlQueryBuilderExtension\src\SqlQueryBuilderExtension\obj\Debug\SqlQueryBuilderExtension.csproj.AssemblyReference.cache
+C:\Projects\SqlQueryBuilderExtension\src\SqlQueryBuilderExtension\obj\Debug\SqlQueryBuilderExtension.csproj.CoreCompileInputs.cache
+C:\Projects\SqlQueryBuilderExtension\src\SqlQueryBuilderExtension\obj\Debug\SqlQueryBuilderExtension.dll
+C:\Projects\SqlQueryBuilderExtension\src\SqlQueryBuilderExtension\obj\Debug\SqlQueryBuilderExtension.pdb
